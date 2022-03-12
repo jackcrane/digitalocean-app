@@ -1,107 +1,76 @@
-import { StatusBar } from 'expo-status-bar';
-import React, { useState, useEffect } from 'react';
-import { Text, View, Linking, TouchableOpacity, TextInput, TouchableOpacityBase } from 'react-native';
-import styles from './Styles';
+import React, { useEffect } from "react";
+import { TouchableOpacity, Text, View, Linking, Image } from "react-native";
+import * as WebBrowser from "expo-web-browser";
+import { StatusBar } from "expo-status-bar";
+import AppLoading from "expo-app-loading";
 
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import { Storage, Spacer } from "./Utilities";
 
-import { Spacer, Link, Storage } from './Utilities';
+import styles from "./styles/LoginStyles";
 
-// export default function Login(props) {
 const Login = (props) => {
-  // 855c0da05ec2eb5b6b5a562be8cef164c96ef15cba68e497cbcd6691335c82fe
-  const [bearerToken, setBearerToken] = useState('');
-  const [tokenInputValue, setTokenInputValue] = useState('');
-
-  const [errorMessage, setErrorMessage] = useState('');
-
-  const [submitBtnVal, setSubmitBtnVal] = useState('Connect to your account!');
-
-  useEffect(() => {
-    try {
-      const value = AsyncStorage.getItem('@do_keyd').then((e) => {
-        if(e == null) {
-
-        } else {
-          fetch("https://api.digitalocean.com/v2/account", {
-            headers: {
-              Authorization: `Bearer ${e}`,
-              "Content-Type": "application/json"
-            }
-          })
-            .then(response => response.json())
-            .then(data => {
-              if(data.account) {
-                console.log(data)
-                // Login successful!
-                props.nav.navigate('Destinations')
-              } else {
-                // Login unsuccessful. Try again
-                setErrorMessage('You had a key saved, but DigitalOcean rejected it. Please create a new key or try again')
-              }
-            })
-        }
-      })
-    } catch(e) {
-      // error reading value
-    }
-  }, [])
-
-  const handleConnectBtnPress = () => {
-    if(submitBtnVal == 'Connect to your account!') {
-      setErrorMessage('')
-      let tout = setTimeout(function() {
-        setSubmitBtnVal('Connect to your account!');
-        alert('Something has gone wrong. Please check your token and try again.')
-      }, 2000)
-      console.log(tokenInputValue);
-      setSubmitBtnVal('Loading...');
-      fetch("https://api.digitalocean.com/v2/account", {
-        headers: {
-          Authorization: `Bearer ${tokenInputValue}`,
-          "Content-Type": "application/json"
-        }
-      })
-        .then(response => response.json())
-        .then(data => {
-          if(data.account) {
-            // Login successful!
-            console.log(data)
-            Storage.set('do_key', tokenInputValue);
-            clearTimeout(tout)
-            props.nav.navigate('Destinations')
-          } else {
-            // Login unsuccessful. Try again
-            setErrorMessage('DigitalOcean did not recognize your key. Please try again.')
+  const _openAuthSessionAsync = async () => {
+    Linking.addEventListener("url", handleOpenURL);
+    const authsession = await WebBrowser.openAuthSessionAsync(
+      "https://cloud.digitalocean.com/v1/oauth/authorize?client_id=137df427aa623a809915c5b88bd82df3cdbdb35f33cdee89e3d4b08b50178a9b&redirect_uri=https://docn-app-redirect.jackcrane.workers.dev&response_type=code&scope=write"
+    );
+    if (authsession.type === "success") {
+      console.log("success");
+      console.log("session", authsession.url);
+      let authcode = authsession.url.split("code=")[1];
+      try {
+        let response = await fetch(
+          `https://cloud.digitalocean.com/v1/oauth/token?client_id=137df427aa623a809915c5b88bd82df3cdbdb35f33cdee89e3d4b08b50178a9b&client_secret=75654094aa613a5435accf8b54ec82cce6839065deacab0a3438f5737c59c394&grant_type=authorization_code&code=${authcode}&redirect_uri=https://docn-app-redirect.jackcrane.workers.dev`,
+          {
+            method: "POST",
           }
-        })
-        .then(function() {
-          clearTimeout(tout);
-          setSubmitBtnVal('Connect to your account!');
-        })
+        );
+        let json = await response.json();
+        if (json.access_token) {
+          console.log("Login successful! AuthToken:", json.access_token);
+          await Storage.set("do_key", json.access_token);
+          await Storage.set("do_refresh_key", json.refresh_token);
+          props.route.params.AllowLogin();
+        }
+      } catch (error) {
+        console.error(error);
+      }
     }
-  }
+  };
+
+  const handleOpenURL = (url) => {
+    // Function does nothing, simply used for linking.
+  };
 
   return (
     <View style={styles.loginContainer}>
-      <Text style={styles.title}>Lets get started!</Text>
-      <Spacer />
-      <Text style={{color:'red', fontWeight:'bold'}}>{errorMessage}</Text>
-      <TextInput placeholder="Your digitalocean token" style={styles.input} onChangeText={t => setTokenInputValue(t)} />
-      <Spacer />
-      <TouchableOpacity onPress={handleConnectBtnPress}>
-        <Text style={styles.button}>{submitBtnVal}</Text>
-      </TouchableOpacity>
-      <Spacer />
-      <Text style={styles.subtle}>
-        Visit <Link href="https://cloud.digitalocean.com/account/api/tokens">https://cloud.digitalocean.com/account/api/tokens</Link> to generate a new Personal Access Token.
-        {"\n\n"}
-        Enter any name you would like, and give the token write access. Copy & paste your token into the input above.
-      </Text>
-      <TouchableOpacity onPress={async() => console.log(await Storage.get('do_key'))}><Text>Show</Text></TouchableOpacity>
-      <StatusBar style="auto" />
+      <StatusBar style="light" />
+      <View style={styles.logoContainer}>
+        <Image
+          source={require("../assets/DO_Logo_Horizontal_White.png")}
+          style={styles.logo}
+        />
+      </View>
+      <View style={styles.loginFieldsContainer}>
+        <Text style={styles.title}>Lets get started!</Text>
+        <Spacer />
+        <TouchableOpacity
+          onPress={() => {
+            _openAuthSessionAsync();
+          }}
+        >
+          <Text style={styles.button}>Log in with DigitalOcean</Text>
+        </TouchableOpacity>
+        <Spacer height={15} />
+        <Text style={styles.content}>
+          Because this app is a third-party service, you will log in through
+          DigitalOcean's OAuth service. Nothing you send here will be stored on
+          our servers. Your account information, payment information, and
+          authorization codes are not cached on our servers.
+        </Text>
+      </View>
     </View>
   );
-}
+};
 
 export default Login;
