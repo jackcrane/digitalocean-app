@@ -13,8 +13,6 @@ import Apps from "./components/Apps";
 import AppInfo from "./components/AppInfo";
 import Account from "./components/Account";
 
-import AppEnvVars from "./components/AppEnvVars";
-
 import { Storage } from "./components/Utilities";
 import AppLoading from "expo-app-loading";
 
@@ -56,10 +54,6 @@ function AccountIdx({ route, navigation }) {
 
 function AppInfoIdx({ route, navigation }) {
   return <AppInfo nav={navigation} route={route.params} />;
-}
-
-function AppEnvVarsIdx({ route, navigation }) {
-  return <AppEnvVars nav={navigation} route={route.params} />;
 }
 
 export default function App() {
