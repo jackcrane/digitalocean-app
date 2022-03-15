@@ -1,18 +1,8 @@
 import { StyleSheet, Platform } from "react-native";
-
-const colors = {
-  doblue: "#0069ff",
-  dogrey: "#dfdfdf",
-  dogreen: "#15cd72",
-  dored: "#CC2914",
-  darkgrey: "#757575",
-};
-
-const defaults = {
-  fontSize: 20,
-};
+import UtilityStyles, { colors, defaults } from "./Uts";
 
 const styles = StyleSheet.create({
+  ...UtilityStyles,
   actions: {
     flexDirection: "row",
   },
@@ -56,13 +46,6 @@ const styles = StyleSheet.create({
     ...defaults,
     color: colors.doblue,
   },
-  title: {
-    fontSize: 48,
-    fontFamily: "Epilogue_600SemiBold",
-  },
-  text: {
-    ...defaults,
-  },
   button: {
     ...defaults,
     width: "100%",
@@ -72,17 +55,7 @@ const styles = StyleSheet.create({
     color: "white",
     fontFamily: "Epilogue_600SemiBold",
   },
-  input: {
-    ...defaults,
-    width: "100%",
-    padding: 15,
-    marginVertical: 10,
-    backgroundColor: "white",
-    color: "black",
-    borderWidth: 2,
-    borderColor: colors.doblue,
-    borderRadius: 5,
-  },
 });
 
 export default styles;
+export { colors };

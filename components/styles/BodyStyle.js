@@ -1,17 +1,6 @@
 import { StyleSheet, Platform } from "react-native";
 import { Dimensions } from "react-native";
-
-const colors = {
-  doblue: "#0069ff",
-  dogrey: "#dfdfdf",
-  dogreen: "#15cd72",
-  dored: "#CC2914",
-  darkgrey: "#757575",
-};
-
-const defaults = {
-  fontSize: 20,
-};
+import UtilityStyles, { colors, defaults } from "./Uts";
 
 const styles = StyleSheet.create({
   header: {

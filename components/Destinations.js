@@ -9,7 +9,7 @@ import {
   ActivityIndicator,
   ScrollView,
 } from "react-native";
-import styles from "./styles/ListingStyles";
+import styles from "./styles/DestStyles";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 import { Spacer, Link, Storage } from "./Utilities";

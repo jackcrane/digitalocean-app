@@ -1,32 +1,8 @@
 import { StyleSheet, Platform } from "react-native";
-
-const colors = {
-  doblue: "#0069ff",
-  dogrey: "#dfdfdf",
-  dogreen: "#15cd72",
-  dored: "#CC2914",
-  darkgrey: "#757575",
-};
-
-const defaults = {
-  fontSize: 20,
-};
+import UtilityStyles, { colors, defaults } from "./Uts";
 
 const styles = StyleSheet.create({
-  title: {
-    fontSize: 48,
-    fontFamily: "Epilogue_600SemiBold",
-  },
-  line: {
-    borderBottomColor: colors.dogrey,
-    borderBottomWidth: 2,
-    marginVertical: 10,
-  },
-  subtitle: {
-    fontSize: 24,
-    fontFamily: "Epilogue_600SemiBold",
-    color: colors.darkgrey,
-  },
+  ...UtilityStyles,
   row: {
     flexDirection: "row",
     justifyContent: "space-between",
@@ -39,13 +15,7 @@ const styles = StyleSheet.create({
   value: {
     ...defaults,
     color: colors.darkgrey,
-    // monospace font
     fontFamily: "Epilogue_400Regular",
-  },
-  link: {
-    ...defaults,
-    textDecorationColor: colors.doblue,
-    textDecorationLine: "underline",
   },
 });
 

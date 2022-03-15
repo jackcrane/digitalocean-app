@@ -15,7 +15,7 @@ import React, { useState, useEffect } from "react";
 
 import Toast from "react-native-toast-message";
 
-import styles from "./styles/DropletActionsStyle";
+import styles, { colors } from "./styles/DropletActionsStyle";
 
 const DropletActions = (props) => {
   const [shutdownModalVisible, setShutdownModalVisible] = useState(false);
@@ -505,6 +505,7 @@ const DropletActions = (props) => {
               autoCorrect={false}
               autoComplete="off"
               style={styles.input}
+              placeholderTextColor={colors.darkgrey}
               placeholder={`Enter droplet name (${props.dropletName.substring(
                 0,
                 8

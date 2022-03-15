@@ -14,7 +14,7 @@ import styles, { colors } from "./styles/AppInfoStyle";
 import Toast from "react-native-toast-message";
 import Collapsible from "./Collapsible";
 
-import { Spacer, Link, Storage } from "./Utilities";
+import { Spacer, Line, ThinLine, Link, Storage } from "./Utilities";
 
 import DropletActions from "./DropletActions";
 
@@ -95,25 +95,6 @@ const DropletInfo = (props) => {
         });
     });
   }, [refreshTick]);
-
-  const Line = () => {
-    return <View style={styles.line} />;
-  };
-  const ThinLine = () => {
-    return <View style={{ ...styles.line, borderBottomWidth: 1 }} />;
-  };
-
-  const Link = (props) => {
-    return (
-      <TouchableOpacity
-        onPress={() => {
-          Linking.openURL(props.href);
-        }}
-      >
-        <Text style={{ ...styles.link, ...props.style }}>{props.children}</Text>
-      </TouchableOpacity>
-    );
-  };
 
   return (
     <Body

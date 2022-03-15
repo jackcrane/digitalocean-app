@@ -119,6 +119,35 @@ export default function Droplets(props) {
             </TouchableOpacity>
           ))
         )}
+        <TouchableOpacity
+          style={styles.row}
+          onPress={() => {
+            props.nav.navigate("New Droplet");
+          }}
+        >
+          <>
+            <Image
+              source={require("../assets/icons/DO_Droplet_Platform.png")}
+              style={{
+                ...styles.icon,
+                width: 30,
+                height: 30,
+                resizeMode: "contain",
+              }}
+            />
+            <View style={{ flexDirection: "column" }}>
+              <Text
+                style={{ ...styles.row__name, width: "100%" }}
+                numberOfLines={1}
+              >
+                New droplet
+              </Text>
+              <View style={styles.flex}>
+                <Text>Create a new Droplet</Text>
+              </View>
+            </View>
+          </>
+        </TouchableOpacity>
       </>
     </Body>
   );

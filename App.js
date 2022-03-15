@@ -1,7 +1,6 @@
 import { StatusBar } from "expo-status-bar";
 import React, { useEffect, useState } from "react";
 import { Text, View, Linking, TouchableOpacity, TextInput } from "react-native";
-// import styles from './components/Styles';
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 
@@ -15,6 +14,8 @@ import Account from "./components/Account";
 
 import { Storage } from "./components/Utilities";
 import AppLoading from "expo-app-loading";
+
+import NewDroplet from "./components/NewDroplet";
 
 import Toast, { BaseToast } from "react-native-toast-message";
 
@@ -54,6 +55,10 @@ function AccountIdx({ route, navigation }) {
 
 function AppInfoIdx({ route, navigation }) {
   return <AppInfo nav={navigation} route={route.params} />;
+}
+
+function NewDropletIdx({ navigation }) {
+  return <NewDroplet nav={navigation} />;
 }
 
 export default function App() {
@@ -183,6 +188,11 @@ export default function App() {
               <Stack.Screen
                 name="Droplet"
                 component={DropletIdx}
+                options={{ headerShown: false }}
+              />
+              <Stack.Screen
+                name="New Droplet"
+                component={NewDropletIdx}
                 options={{ headerShown: false }}
               />
             </>
