@@ -10,11 +10,13 @@ import {
   ScrollView,
   ActivityIndicator,
 } from "react-native";
-import styles from "./styles/DropletsStyle";
+// import styles from "./styles/DropletsStyle";
+import styles from "./styles/AppsStyle";
 
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 import { Spacer, Link, Storage } from "./Utilities";
+import Body from "./Body";
 
 export default function Droplets(props) {
   // 855c0da05ec2eb5b6b5a562be8cef164c96ef15cba68e497cbcd6691335c82fe
@@ -51,74 +53,73 @@ export default function Droplets(props) {
   }, [refreshTick]);
 
   return (
-    <View style={styles.container}>
-      <View style={styles.header}>
-        <TouchableOpacity onPress={() => props.nav.navigate("Destinations")}>
-          <View style={styles.logoContainer}>
-            <Image
-              source={require("../assets/DO_Logo_icon_white.png")}
-              style={styles.logo}
-            />
+    <Body
+      nav={props.nav}
+      refreshControl={
+        <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+      }
+      title="Your Droplets"
+    >
+      <>
+        {dropletsLoading ? (
+          // {true ? (
+          <View
+            style={{
+              flexDirection: "column",
+              height: "90%",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            <ActivityIndicator />
+            <Text style={styles.loadingText}>Awesomeness is loading</Text>
           </View>
-        </TouchableOpacity>
-        <View style={styles.titleContainer}>
-          <Text style={styles.title}>Your Droplets</Text>
-        </View>
-      </View>
-      <View style={styles.contentContainer}>
-        <ScrollView
-          style={styles.innerContainer}
-          refreshControl={
-            <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
-          }
-        >
-          {dropletsLoading ? (
-            // {true ? (
-            <View
-              style={{
-                flexDirection: "column",
-                height: "90%",
-                alignItems: "center",
-                justifyContent: "center",
+        ) : (
+          droplets.map((e, i) => (
+            <TouchableOpacity
+              key={i}
+              style={styles.row}
+              onPress={() => {
+                props.nav.navigate("Droplet", {
+                  dropletid: e.id,
+                });
               }}
             >
-              <ActivityIndicator />
-              <Text style={styles.loadingText}>Awesomeness is loading</Text>
-            </View>
-          ) : (
-            droplets.map((e, i) => (
-              <TouchableOpacity key={i} style={styles.row}>
-                <>
-                  <Image
-                    source={require("../assets/icons/DO_Droplet_Platform.png")}
-                    style={styles.icon}
-                  />
-                  <View
-                    style={{
-                      ...(e.status == "active"
-                        ? styles.row__active
-                        : styles.row__inactive),
-                      ...styles.row_activity,
-                    }}
-                  >
-                    <Text style={{ color: "white" }}>{e.status}</Text>
-                  </View>
-                  <View style={{ flexDirection: "column" }}>
-                    <Text style={styles.row__name} numberOfLines={1}>
-                      {e.name}
+              <>
+                <Image
+                  source={require("../assets/icons/DO_Droplet_Platform.png")}
+                  style={{
+                    ...styles.icon,
+                    width: 30,
+                    height: 30,
+                    resizeMode: "contain",
+                  }}
+                />
+                <View
+                  style={{
+                    ...(e.status == "active"
+                      ? styles.row__active
+                      : styles.row__inactive),
+                    ...styles.row_activity,
+                  }}
+                >
+                  <Text style={{ color: "white" }}>{e.status}</Text>
+                </View>
+                <View style={{ flexDirection: "column" }}>
+                  <Text style={styles.row__name} numberOfLines={1}>
+                    {e.name}
+                  </Text>
+                  <View style={styles.flex}>
+                    <Text>
+                      {e.vcpus} vCPU / {e.disk}GB Disk / {e.memory}MB Memory
                     </Text>
-                    <View style={styles.flex}>
-                      <Text>
-                        {e.vcpus} vCPU / {e.disk}GB Disk / {e.memory}MB Memory
-                      </Text>
-                    </View>
                   </View>
-                </>
-              </TouchableOpacity>
-            ))
-          )}
-        </ScrollView>
-      </View>
-    </View>
+                </View>
+              </>
+            </TouchableOpacity>
+          ))
+        )}
+      </>
+    </Body>
   );
 }

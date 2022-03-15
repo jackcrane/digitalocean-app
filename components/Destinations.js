@@ -117,7 +117,9 @@ export default function Destinations(props) {
               onPress={() => props.nav.navigate("Billing")}
             >
               <>
-                <Text style={styles.price}>${usage || " ..."}</Text>
+                <View style={styles.col}>
+                  <Text style={styles.price}>${usage || " ..."}</Text>
+                </View>
                 <View
                   style={{
                     flex: 1,
@@ -138,10 +140,12 @@ export default function Destinations(props) {
                 onPress={() => props.nav.navigate(e.route)}
               >
                 <>
-                  <Image
-                    source={e.icon}
-                    style={{ ...styles.icon, ...e.iconStyle }}
-                  />
+                  <View style={styles.col}>
+                    <Image
+                      source={e.icon}
+                      style={{ ...styles.icon, ...e.iconStyle }}
+                    />
+                  </View>
                   <View
                     style={{
                       flex: 1,

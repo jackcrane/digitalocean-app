@@ -1,4 +1,5 @@
 import { StyleSheet, Platform } from "react-native";
+import { Dimensions } from "react-native";
 
 const colors = {
   doblue: "#0069ff",
@@ -13,14 +14,10 @@ const defaults = {
 };
 
 const styles = StyleSheet.create({
-  loginContainer: {
-    backgroundColor: "#fff",
-    minHeight: "100%",
-  },
   header: {
     flexDirection: "row",
     width: "100%",
-    backgroundColor: "black",
+    backgroundColor: colors.doblue,
     alignItems: "center",
     justifyContent: "space-between",
     paddingHorizontal: 30,
@@ -44,7 +41,7 @@ const styles = StyleSheet.create({
     paddingTop: 1,
     paddingVertical: 40,
     borderRadius: 20,
-    minHeight: "90%",
+    height: "85%",
   },
   innerContainer: {
     paddingHorizontal: 19,
@@ -58,6 +55,8 @@ const styles = StyleSheet.create({
     borderColor: "white",
     borderRadius: 5,
     padding: 10,
+    // marginLeft: 10,
+    maxWidth: 0.9 * Dimensions.get("window").width - 50 - 40,
   },
   button: {
     ...defaults,
@@ -102,3 +101,4 @@ const styles = StyleSheet.create({
 });
 
 export default styles;
+export { colors };

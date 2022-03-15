@@ -8,6 +8,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 import Login from "./components/Login";
 import Destinations from "./components/Destinations";
 import Droplets from "./components/Droplets";
+import Droplet from "./components/Droplet";
 import Apps from "./components/Apps";
 import AppInfo from "./components/AppInfo";
 import Account from "./components/Account";
@@ -41,6 +42,10 @@ function DropletsIdx({ navigation }) {
   return <Droplets nav={navigation} />;
 }
 
+function DropletIdx({ route, navigation }) {
+  return <Droplet nav={navigation} route={route.params} />;
+}
+
 function AppsIdx({ navigation }) {
   return <Apps nav={navigation} />;
 }
@@ -68,7 +73,9 @@ export default function App() {
 
   const AsynchronouslyGetDoKeyFromStorage = async () => {
     let key = await Storage.get("do_key");
-    if (key) {
+    console.log("Getting key information");
+    if (key && key !== "") {
+      console.log("key");
       let headers = new Headers();
       headers.append("Authorization", `Bearer ${key}`);
       let response = await fetch("https://api.digitalocean.com/v2/account", {
@@ -78,6 +85,7 @@ export default function App() {
       if (json.account) {
         console.log("Account successfully resumed");
         setLoggedIn(true);
+        setCheckingLogin(false);
         // props.AllowLogin();
       } else {
         console.log("Account not rejoined, attempting to find refresh token");
@@ -107,6 +115,11 @@ export default function App() {
           }
         }
       }
+    } else {
+      console.log("setting key");
+      await Storage.set("do_key", "");
+      setLoggedIn(false);
+      setCheckingLogin(false);
     }
   };
 
@@ -126,7 +139,7 @@ export default function App() {
     return <AppLoading />;
   }
 
-  if (!checkingLogin) {
+  if (checkingLogin) {
     return <AppLoading />;
   }
 
@@ -174,8 +187,8 @@ export default function App() {
                 options={{ headerShown: false }}
               />
               <Stack.Screen
-                name="App Environment Variables"
-                component={AppEnvVarsIdx}
+                name="Droplet"
+                component={DropletIdx}
                 options={{ headerShown: false }}
               />
             </>
@@ -189,7 +202,11 @@ export default function App() {
             return (
               <BaseToast
                 {...props}
-                style={{ borderLeftColor: colors.doblue }}
+                style={{
+                  borderColor: colors.doblue,
+                  borderWidth: 5,
+                  borderLeftColor: colors.doblue,
+                }}
                 contentContainerStyle={{ paddingHorizontal: 15 }}
                 text1Style={{
                   fontSize: 20,

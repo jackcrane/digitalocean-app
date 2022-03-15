@@ -55,6 +55,7 @@ const Apps = (props) => {
       refreshControl={
         <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
       }
+      nav={props.nav}
     >
       <>
         {appsLoading ? (

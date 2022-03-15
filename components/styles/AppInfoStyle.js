@@ -42,6 +42,11 @@ const styles = StyleSheet.create({
     // monospace font
     fontFamily: "Epilogue_400Regular",
   },
+  link: {
+    ...defaults,
+    textDecorationColor: colors.doblue,
+    textDecorationLine: "underline",
+  },
 });
 
 export default styles;

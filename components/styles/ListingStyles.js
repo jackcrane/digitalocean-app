@@ -97,6 +97,10 @@ const styles = StyleSheet.create({
     fontFamily: "Epilogue_600SemiBold",
     marginRight: 10,
   },
+  col: {
+    width: 75,
+    alignItems: "center",
+  },
 });
 
 export default styles;
