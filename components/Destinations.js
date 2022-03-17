@@ -77,14 +77,45 @@ export default function Destinations(props) {
       route: "Kubernetes",
     },
     {
+      name: "Spaces",
+      icon: require("../assets/icons/DO_Spaces.png"),
+      route: "Spaces",
+      iconStyle: {
+        height: 40,
+        resizeMode: "contain",
+      },
+    },
+    {
       name: "Volumes",
       icon: require("../assets/icons/DO_Volumes.png"),
       route: "Volumes",
+      iconStyle: {
+        height: 40,
+        resizeMode: "contain",
+      },
+    },
+    {
+      name: "Networking",
+      icon: require("../assets/icons/DO_Networking.png"),
+      route: "Networking",
+      iconStyle: {
+        height: 40,
+        resizeMode: "contain",
+      },
     },
     {
       name: "Databases",
       icon: require("../assets/icons/DO_Databases.png"),
       route: "Databases",
+      iconStyle: {
+        width: 30,
+        resizeMode: "contain",
+      },
+    },
+    {
+      name: "Account",
+      icon: require("../assets/icons/DO_Teams.png"),
+      route: "Account",
       iconStyle: {
         width: 30,
         resizeMode: "contain",
@@ -161,28 +192,8 @@ export default function Destinations(props) {
                 </>
               </TouchableOpacity>
             ))}
-
-            <TouchableOpacity
-              style={styles.row}
-              onPress={() => props.nav.navigate("Account")}
-            >
-              <>
-                <View
-                  style={{
-                    flex: 1,
-                    flexDirection: "row",
-                    justifyContent: "space-between",
-                  }}
-                >
-                  <>
-                    <View style={styles.flex}>
-                      <Text style={styles.row_title}>Account</Text>
-                    </View>
-                  </>
-                </View>
-              </>
-            </TouchableOpacity>
           </View>
+          <Spacer height={500} />
         </ScrollView>
       </View>
     </View>

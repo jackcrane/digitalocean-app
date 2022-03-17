@@ -10,6 +10,7 @@ import {
   ScrollView,
   ActivityIndicator,
 } from "react-native";
+
 import styles, { colors } from "./styles/AppInfoStyle";
 import Toast from "react-native-toast-message";
 import Collapsible from "./Collapsible";

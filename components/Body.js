@@ -1,13 +1,8 @@
 import styles, { colors } from "./styles/BodyStyle";
 import React, { useState, useEffect } from "react";
-import {
-  View,
-  Image,
-  TouchableOpacity,
-  ScrollView,
-  Text,
-  RefreshControl,
-} from "react-native";
+import { View, Image, TouchableOpacity, Text } from "react-native";
+
+import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 
 import { Spacer } from "./Utilities";
 
@@ -38,13 +33,13 @@ const Body = (props) => {
         </View>
       </View>
       <View style={styles.contentContainer}>
-        <ScrollView
+        <KeyboardAwareScrollView
           refreshControl={props.refreshControl}
           style={styles.innerContainer}
         >
           {props.children}
           <Spacer height={150} />
-        </ScrollView>
+        </KeyboardAwareScrollView>
       </View>
     </View>
   );

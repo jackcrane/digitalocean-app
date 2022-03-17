@@ -9,6 +9,8 @@ import {
   View,
 } from "react-native";
 
+import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
+
 import { Spacer } from "./Utilities";
 
 import React, { useState, useEffect } from "react";
@@ -477,7 +479,7 @@ const DropletActions = (props) => {
           >
             <Text style={styles.closeText}>Cancel</Text>
           </TouchableOpacity>
-          <ScrollView>
+          <KeyboardAwareScrollView>
             <Text style={styles.title}>
               Destroy your droplet and all of its resources
             </Text>
@@ -524,7 +526,7 @@ const DropletActions = (props) => {
               </>
             )}
             <Spacer height={100} />
-          </ScrollView>
+          </KeyboardAwareScrollView>
         </View>
       </Modal>
 
