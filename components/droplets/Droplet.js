@@ -11,17 +11,17 @@ import {
   ActivityIndicator,
 } from "react-native";
 
-import styles, { colors } from "./styles/AppInfoStyle";
+import styles, { colors } from "../styles/AppInfoStyle";
 import Toast from "react-native-toast-message";
-import Collapsible from "./Collapsible";
+import Collapsible from "../util/Collapsible";
 
-import { Spacer, Line, ThinLine, Link, Storage } from "./Utilities";
+import { Spacer, Line, ThinLine, Link, Storage } from "../util/Utilities";
 
-import DropletActions from "./DropletActions";
-import DropletGraphs from "./DropletGraphs";
+import DropletActions from "../droplets/DropletActions";
+import DropletGraphs from "../droplets/DropletGraphs";
 
-import Body from "./Body";
-import Loaded from "./Loaded";
+import Body from "../util/Body";
+import Loaded from "../util/Loaded";
 
 const DropletInfo = (props) => {
   const dropletid = props.route.dropletid;

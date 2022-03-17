@@ -8,10 +8,10 @@ import {
   ScrollView,
   Modal,
 } from "react-native";
-import Body from "./Body";
+import Body from "./util/Body";
 import styles from "./styles/BillingStyle";
 import { colors } from "./styles/Uts";
-import { Line, Spacer, Storage, ThinLine } from "./Utilities";
+import { Line, Spacer, Storage, ThinLine } from "./util/Utilities";
 
 const Billing = (props) => {
   const [loading, setLoading] = useState(true);

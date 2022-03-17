@@ -8,14 +8,14 @@ import {
   ScrollView,
   Alert,
 } from "react-native";
-import styles, { colors } from "./styles/NewDropletStyle";
+import styles, { colors } from "../styles/NewDropletStyle";
 import Checkbox from "expo-checkbox";
 
-import Collapsible from "./Collapsible";
+import Collapsible from "../util/Collapsible";
 
-import { Storage, Line, ThinLine, Spacer } from "./Utilities";
+import { Storage, Line, ThinLine, Spacer } from "../util/Utilities";
 
-import Body from "./Body";
+import Body from "../util/Body";
 
 import Fuse from "fuse.js";
 let fuse = new Fuse([], {

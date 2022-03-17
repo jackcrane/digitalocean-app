@@ -6,17 +6,17 @@ import { createStackNavigator } from "@react-navigation/stack";
 
 import Login from "./components/Login";
 import Destinations from "./components/Destinations";
-import Droplets from "./components/Droplets";
-import Droplet from "./components/Droplet";
-import Apps from "./components/Apps";
-import AppInfo from "./components/AppInfo";
+import Droplets from "./components/droplets/Droplets";
+import Droplet from "./components/droplets/Droplet";
+import Apps from "./components/apps/Apps";
+import AppInfo from "./components/apps/AppInfo";
 import Account from "./components/Account";
 import Billing from "./components/Billing";
 
-import { Storage } from "./components/Utilities";
+import { Storage } from "./components/util/Utilities";
 import AppLoading from "expo-app-loading";
 
-import NewDroplet from "./components/NewDroplet";
+import NewDroplet from "./components/droplets/NewDroplet";
 
 import Toast, { BaseToast } from "react-native-toast-message";
 

@@ -10,13 +10,13 @@ import {
   ScrollView,
   ActivityIndicator,
 } from "react-native";
-import styles, { colors } from "./styles/AppInfoStyle";
+import styles, { colors } from "../styles/AppInfoStyle";
 import Toast from "react-native-toast-message";
-import Collapsible from "./Collapsible";
+import Collapsible from "../util/Collapsible";
 
-import { Spacer, Link, Storage } from "./Utilities";
+import { Spacer, Link, Storage } from "../util/Utilities";
 
-import Body from "./Body";
+import Body from "../util/Body";
 
 const AppInfo = (props) => {
   const appid = props.route.appid;

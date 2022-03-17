@@ -5,8 +5,8 @@ import {
   VictoryLine,
   VictoryZoomContainer,
 } from "victory-native";
-import { colors } from "./styles/Uts";
-import { Storage } from "./Utilities";
+import { colors } from "../styles/Uts";
+import { Storage } from "../util/Utilities";
 
 const DropletGraphs = (props) => {
   const [data, setData] = useState([]);

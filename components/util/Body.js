@@ -1,4 +1,4 @@
-import styles, { colors } from "./styles/BodyStyle";
+import styles, { colors } from "../styles/BodyStyle";
 import React, { useState, useEffect } from "react";
 import { View, Image, TouchableOpacity, Text } from "react-native";
 
@@ -21,7 +21,7 @@ const Body = (props) => {
         <TouchableOpacity onPress={() => props.nav.navigate("Destinations")}>
           <View style={styles.logoContainer}>
             <Image
-              source={require("../assets/DO_Logo_icon_white.png")}
+              source={require("../../assets/DO_Logo_icon_white.png")}
               style={styles.logo}
             />
           </View>

@@ -10,10 +10,10 @@ import {
   ScrollView,
   ActivityIndicator,
 } from "react-native";
-import Body from "./Body";
-import styles from "./styles/AppsStyle";
+import Body from "../util/Body";
+import styles from "../styles/AppsStyle";
 
-import { Spacer, Link, Storage } from "./Utilities";
+import { Spacer, Link, Storage } from "../util/Utilities";
 
 const Apps = (props) => {
   const [apps, setApps] = useState([]);
@@ -73,7 +73,7 @@ const Apps = (props) => {
             >
               <>
                 <Image
-                  source={require("../assets/icons/DO_App_Platform.png")}
+                  source={require("../../assets/icons/DO_App_Platform.png")}
                   style={styles.icon}
                 />
                 <View

@@ -10,13 +10,12 @@ import {
   ScrollView,
   ActivityIndicator,
 } from "react-native";
-// import styles from "./styles/DropletsStyle";
-import styles from "./styles/AppsStyle";
+import styles from "../styles/AppsStyle";
 
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
-import { Spacer, Link, Storage } from "./Utilities";
-import Body from "./Body";
+import { Spacer, Link, Storage } from "../util/Utilities";
+import Body from "../util/Body";
 
 export default function Droplets(props) {
   // 855c0da05ec2eb5b6b5a562be8cef164c96ef15cba68e497cbcd6691335c82fe
@@ -87,7 +86,7 @@ export default function Droplets(props) {
             >
               <>
                 <Image
-                  source={require("../assets/icons/DO_Droplet_Platform.png")}
+                  source={require("../../assets/icons/DO_Droplet_Platform.png")}
                   style={{
                     ...styles.icon,
                     width: 30,
@@ -127,7 +126,7 @@ export default function Droplets(props) {
         >
           <>
             <Image
-              source={require("../assets/icons/DO_Droplet_Platform.png")}
+              source={require("../../assets/icons/DO_Droplet_Platform.png")}
               style={{
                 ...styles.icon,
                 width: 30,

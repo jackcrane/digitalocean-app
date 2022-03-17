@@ -11,13 +11,13 @@ import {
 
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 
-import { Spacer } from "./Utilities";
+import { Spacer } from "../util/Utilities";
 
 import React, { useState, useEffect } from "react";
 
 import Toast from "react-native-toast-message";
 
-import styles, { colors } from "./styles/DropletActionsStyle";
+import styles, { colors } from "../styles/DropletActionsStyle";
 
 const DropletActions = (props) => {
   const [shutdownModalVisible, setShutdownModalVisible] = useState(false);
@@ -538,7 +538,7 @@ const DropletActions = (props) => {
           >
             <Image
               style={styles.icon}
-              source={require("../assets/icons/tabler-icon-power.png")}
+              source={require("../../assets/icons/tabler-icon-power.png")}
             />
             <Text>Shut Down</Text>
           </TouchableOpacity>
@@ -549,7 +549,7 @@ const DropletActions = (props) => {
           >
             <Image
               style={styles.icon}
-              source={require("../assets/icons/tabler-icon-power.png")}
+              source={require("../../assets/icons/tabler-icon-power.png")}
             />
             <Text>Power On</Text>
           </TouchableOpacity>
@@ -560,7 +560,7 @@ const DropletActions = (props) => {
         >
           <Image
             style={styles.icon}
-            source={require("../assets/icons/tabler-icon-refresh.png")}
+            source={require("../../assets/icons/tabler-icon-refresh.png")}
           />
           <Text>Reboot</Text>
         </TouchableOpacity>
@@ -570,7 +570,7 @@ const DropletActions = (props) => {
         >
           <Image
             style={styles.icon}
-            source={require("../assets/icons/tabler-icon-camera.png")}
+            source={require("../../assets/icons/tabler-icon-camera.png")}
           />
           <Text>Snapshot</Text>
         </TouchableOpacity>
@@ -580,7 +580,7 @@ const DropletActions = (props) => {
         >
           <Image
             style={styles.icon}
-            source={require("../assets/icons/tabler-icon-trash.png")}
+            source={require("../../assets/icons/tabler-icon-trash.png")}
           />
           <Text>Destroy</Text>
         </TouchableOpacity>

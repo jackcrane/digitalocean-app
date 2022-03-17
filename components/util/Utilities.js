@@ -1,7 +1,7 @@
 import { StatusBar } from "expo-status-bar";
 import React, { useState } from "react";
 import { Text, View, Linking, TextInput, TouchableOpacity } from "react-native";
-import styles from "./styles/Uts";
+import styles from "../styles/Uts";
 
 import AsyncStorage from "@react-native-async-storage/async-storage";
 

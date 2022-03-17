@@ -4,7 +4,7 @@ import * as WebBrowser from "expo-web-browser";
 import { StatusBar } from "expo-status-bar";
 import AppLoading from "expo-app-loading";
 
-import { Storage, Spacer } from "./Utilities";
+import { Storage, Spacer } from "./util/Utilities";
 
 import styles from "./styles/LoginStyles";
 

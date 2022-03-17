@@ -12,8 +12,8 @@ import {
 import styles from "./styles/DestStyles";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
-import { Spacer, Link, Storage } from "./Utilities";
-import Body from "./Body";
+import { Spacer, Link, Storage } from "./util/Utilities";
+import Body from "./util/Body";
 
 export default function Destinations(props) {
   const [refreshing, setRefreshing] = useState(false);
