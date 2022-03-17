@@ -20,15 +20,19 @@
     "expo-font": "~9.2.1",
     "expo-status-bar": "~1.0.4",
     "expo-web-browser": "~9.2.0",
+    "fbjs": "^3.0.4",
     "fuse.js": "^6.5.3",
     "react": "16.13.1",
     "react-dom": "16.13.1",
     "react-native": "https://github.com/expo/react-native/archive/sdk-42.0.0.tar.gz",
+    "react-native-blob-util": "^0.14.1",
+    "react-native-chart-kit": "^6.12.0",
     "react-native-collapsible": "^1.6.0",
     "react-native-expo-viewport-units": "^0.0.8",
     "react-native-gesture-handler": "~1.10.2",
     "react-native-keyboard-aware-scroll-view": "^0.9.5",
     "react-native-keyboard-aware-scrollview": "^2.1.0",
+    "react-native-pdf": "^6.4.0",
     "react-native-reanimated": "~2.2.0",
     "react-native-safe-area-context": "3.2.0",
     "react-native-screens": "~3.4.0",
@@ -37,7 +41,8 @@
     "react-native-viewport-units": "^0.0.5",
     "react-native-web": "~0.13.12",
     "react-navigation-shared-element": "^3.1.3",
-    "react-timer-hook": "^3.0.5"
+    "react-timer-hook": "^3.0.5",
+    "victory-native": "^36.3.1"
   },
   "devDependencies": {
     "@babel/core": "^7.9.0"

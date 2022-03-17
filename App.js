@@ -11,6 +11,7 @@ import Droplet from "./components/Droplet";
 import Apps from "./components/Apps";
 import AppInfo from "./components/AppInfo";
 import Account from "./components/Account";
+import Billing from "./components/Billing";
 
 import { Storage } from "./components/Utilities";
 import AppLoading from "expo-app-loading";
@@ -59,6 +60,10 @@ function AppInfoIdx({ route, navigation }) {
 
 function NewDropletIdx({ navigation }) {
   return <NewDroplet nav={navigation} />;
+}
+
+function BillingIdx({ navigation }) {
+  return <Billing nav={navigation} />;
 }
 
 export default function App() {
@@ -193,6 +198,11 @@ export default function App() {
               <Stack.Screen
                 name="New Droplet"
                 component={NewDropletIdx}
+                options={{ headerShown: false }}
+              />
+              <Stack.Screen
+                name="Billing"
+                component={BillingIdx}
                 options={{ headerShown: false }}
               />
             </>

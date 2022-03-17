@@ -18,6 +18,7 @@ import Collapsible from "./Collapsible";
 import { Spacer, Line, ThinLine, Link, Storage } from "./Utilities";
 
 import DropletActions from "./DropletActions";
+import DropletGraphs from "./DropletGraphs";
 
 import Body from "./Body";
 import Loaded from "./Loaded";
@@ -187,6 +188,9 @@ const DropletInfo = (props) => {
               {droplet.locked ? "Locked" : "Unlocked"}
             </Text>
           </View>
+          <Line />
+          <Text style={styles.subtitle}>CPU Utilization</Text>
+          <DropletGraphs dropletId={droplet.id} />
           <Line />
           <Text style={styles.subtitle}>IMAGE</Text>
           <ThinLine />
