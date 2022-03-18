@@ -42,6 +42,7 @@
     "react-native-safe-area-context": "3.2.0",
     "react-native-screens": "~3.4.0",
     "react-native-shared-element": "^0.8.4",
+    "react-native-svg": "^12.3.0",
     "react-native-toast-message": "^2.1.1",
     "react-native-viewport-units": "^0.0.5",
     "react-native-web": "~0.13.12",

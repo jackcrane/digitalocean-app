@@ -1,8 +1,8 @@
 {
   "expo": {
-    "name": "digitalocean-app",
+    "name": "DigitalOcean Controller",
     "slug": "digitalocean-app",
-    "version": "1.0.0",
+    "version": "0.0.3",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "hooks": {
@@ -25,15 +25,11 @@
     "updates": {
       "fallbackToCacheTimeout": 0
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    "assetBundlePatterns": ["**/*"],
     "ios": {
       "supportsTablet": false,
       "infoPlist": {
-        "LSApplicationQueriesSchemes": [
-          "ssh"
-        ]
+        "LSApplicationQueriesSchemes": ["ssh"]
       },
       "bundleIdentifier": "com.jackcrane.digitalocean-app"
     },
@@ -47,8 +43,6 @@
       "favicon": "./assets/favicon.png"
     },
     "description": "",
-    "plugins": [
-      "sentry-expo"
-    ]
+    "plugins": ["sentry-expo"]
   }
 }
