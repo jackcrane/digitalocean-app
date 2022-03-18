@@ -1,8 +1,9 @@
 {
   "expo": {
+    "scheme": "digitalocean",
     "name": "DigitalOcean Controller",
     "slug": "digitalocean-app",
-    "version": "0.0.3",
+    "version": "0.0.5",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "hooks": {
