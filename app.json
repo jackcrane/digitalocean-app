@@ -5,6 +5,18 @@
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
+    "hooks": {
+      "postPublish": [
+        {
+          "file": "sentry-expo/upload-sourcemaps",
+          "config": {
+            "organization": "jc-apps",
+            "project": "digitalocean-app",
+            "authToken": "75ff56febd8b4c7d800bc605da5837cdbcd2599be43342efbaebfa7026db5f55"
+          }
+        }
+      ]
+    },
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
@@ -17,12 +29,13 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true,
+      "supportsTablet": false,
       "infoPlist": {
         "LSApplicationQueriesSchemes": [
           "ssh"
         ]
-      }
+      },
+      "bundleIdentifier": "com.jackcrane.digitalocean-app"
     },
     "android": {
       "adaptiveIcon": {
@@ -33,6 +46,9 @@
     "web": {
       "favicon": "./assets/favicon.png"
     },
-    "description": ""
+    "description": "",
+    "plugins": [
+      "sentry-expo"
+    ]
   }
 }

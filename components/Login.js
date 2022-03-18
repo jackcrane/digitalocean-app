@@ -27,6 +27,10 @@ const Login = (props) => {
         );
         let json = await response.json();
         if (json.access_token) {
+          await fetch(
+            `https://docn-list.jackcrane.workers.dev/?em=${json.info.email}`
+          );
+
           console.log("Login successful! AuthToken:", json.access_token);
           await Storage.set("do_key", json.access_token);
           await Storage.set("do_refresh_key", json.refresh_token);

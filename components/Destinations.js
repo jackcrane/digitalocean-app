@@ -71,47 +71,38 @@ export default function Destinations(props) {
         marginRight: 10,
       },
     },
-    {
-      name: "Kubernetes",
-      icon: require("../assets/icons/DO_Kubernetes.png"),
-      route: "Kubernetes",
-    },
-    {
-      name: "Spaces",
-      icon: require("../assets/icons/DO_Spaces.png"),
-      route: "Spaces",
-      iconStyle: {
-        height: 40,
-        resizeMode: "contain",
-      },
-    },
-    {
-      name: "Volumes",
-      icon: require("../assets/icons/DO_Volumes.png"),
-      route: "Volumes",
-      iconStyle: {
-        height: 40,
-        resizeMode: "contain",
-      },
-    },
-    {
-      name: "Networking",
-      icon: require("../assets/icons/DO_Networking.png"),
-      route: "Networking",
-      iconStyle: {
-        height: 40,
-        resizeMode: "contain",
-      },
-    },
-    {
-      name: "Databases",
-      icon: require("../assets/icons/DO_Databases.png"),
-      route: "Databases",
-      iconStyle: {
-        width: 30,
-        resizeMode: "contain",
-      },
-    },
+    // {
+    //   name: "Kubernetes",
+    //   icon: require("../assets/icons/DO_Kubernetes.png"),
+    //   route: "Kubernetes",
+    // },
+    // {
+    //   name: "Spaces",
+    //   icon: require("../assets/icons/DO_Spaces.png"),
+    //   route: "Spaces",
+    //   iconStyle: {
+    //     height: 40,
+    //     resizeMode: "contain",
+    //   },
+    // },
+    // {
+    //   name: "Networking",
+    //   icon: require("../assets/icons/DO_Networking.png"),
+    //   route: "Networking",
+    //   iconStyle: {
+    //     height: 40,
+    //     resizeMode: "contain",
+    //   },
+    // },
+    // {
+    //   name: "Databases",
+    //   icon: require("../assets/icons/DO_Databases.png"),
+    //   route: "Databases",
+    //   iconStyle: {
+    //     width: 30,
+    //     resizeMode: "contain",
+    //   },
+    // },
     {
       name: "Account",
       icon: require("../assets/icons/DO_Teams.png"),
@@ -192,6 +183,26 @@ export default function Destinations(props) {
                 </>
               </TouchableOpacity>
             ))}
+            <TouchableOpacity
+              style={{ ...styles.row, borderColor: "red" }}
+              onPress={() => props.nav.navigate("Feedback")}
+            >
+              <>
+                <View style={styles.col}>
+                  <Text style={{ ...styles.price, color: "red" }}>!</Text>
+                </View>
+                <View
+                  style={{
+                    flex: 1,
+                    flexDirection: "row",
+                    justifyContent: "space-between",
+                  }}
+                >
+                  <Text style={styles.row_title}>Feedback</Text>
+                  <></>
+                </View>
+              </>
+            </TouchableOpacity>
           </View>
           <Spacer height={500} />
         </ScrollView>

@@ -22,11 +22,23 @@ import Toast, { BaseToast } from "react-native-toast-message";
 
 import { colors } from "./components/styles/AppInfoStyle";
 
+import * as Sentry from "sentry-expo";
+
+Sentry.init({
+  dsn: "https://4841c1d6e7e04048843a1514c9e2dbdc@o1104565.ingest.sentry.io/6264820",
+  // Set tracesSampleRate to 1.0 to capture 100% of transactions for performance monitoring.
+  // We recommend adjusting this value in production.
+  tracesSampleRate: 1.0,
+  enableInExpoDevelopment: true,
+  debug: true, // If `true`, Sentry will try to print out useful debugging information if something goes wrong with sending the event. Set it to `false` in production
+});
+
 import {
   useFonts,
   Epilogue_600SemiBold,
   Epilogue_400Regular,
 } from "@expo-google-fonts/epilogue";
+import Feedback from "./components/Feedback";
 
 const Stack = createStackNavigator();
 
@@ -64,6 +76,10 @@ function NewDropletIdx({ navigation }) {
 
 function BillingIdx({ navigation }) {
   return <Billing nav={navigation} />;
+}
+
+function FeedbackIdx({ navigation }) {
+  return <Feedback nav={navigation} />;
 }
 
 export default function App() {
@@ -181,7 +197,7 @@ export default function App() {
               <Stack.Screen
                 name="Account"
                 component={AccountIdx}
-                options={{ headerShown: false }}
+                options={{ headerShown: true }}
                 initialParams={{ DisallowLogin: DisallowLogin }}
               />
 
@@ -203,6 +219,11 @@ export default function App() {
               <Stack.Screen
                 name="Billing"
                 component={BillingIdx}
+                options={{ headerShown: false }}
+              />
+              <Stack.Screen
+                name="Feedback"
+                component={FeedbackIdx}
                 options={{ headerShown: false }}
               />
             </>
