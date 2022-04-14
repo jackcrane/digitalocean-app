@@ -8,6 +8,7 @@ npm-debug.*
 *.mobileprovision
 *.orig.*
 web-build/
+expo-constants.json
 
 # macOS
 .DS_Store

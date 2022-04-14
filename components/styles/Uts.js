@@ -46,6 +46,10 @@ const styles = StyleSheet.create({
     borderColor: colors.doblue,
     borderRadius: 5,
   },
+  row: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+  },
 });
 
 export default styles;

@@ -30,7 +30,8 @@
     "ios": {
       "supportsTablet": false,
       "infoPlist": {
-        "LSApplicationQueriesSchemes": ["ssh"]
+        "LSApplicationQueriesSchemes": ["ssh"],
+        "NSFaceIDUsageDescription": "Use Face ID to ensure further security."
       },
       "bundleIdentifier": "com.jackcrane.digitalocean-app"
     },

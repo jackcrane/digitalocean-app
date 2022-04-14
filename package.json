@@ -8,6 +8,7 @@
     "eject": "expo eject"
   },
   "dependencies": {
+    "@aws-sdk/client-s3": "^3.54.1",
     "@expo-google-fonts/epilogue": "^0.2.2",
     "@react-native-async-storage/async-storage": "~1.15.0",
     "@react-native-community/checkbox": "^0.5.12",
@@ -15,6 +16,7 @@
     "@react-navigation/native": "^5.9.4",
     "@react-navigation/stack": "^5.14.5",
     "@sentry/react-native": "^3.3.3",
+    "aws-sdk": "^2.1096.0",
     "expo": "~42.0.1",
     "expo-app-loading": "1.1.2",
     "expo-application": "~3.2.0",
@@ -22,6 +24,7 @@
     "expo-constants": "~11.0.1",
     "expo-device": "~3.3.0",
     "expo-font": "~9.2.1",
+    "expo-local-authentication": "~11.1.1",
     "expo-status-bar": "~1.0.4",
     "expo-updates": "~0.8.2",
     "expo-web-browser": "~9.2.0",
@@ -52,7 +55,10 @@
     "victory-native": "^36.3.1"
   },
   "devDependencies": {
-    "@babel/core": "^7.9.0"
+    "@babel/core": "^7.9.0",
+    "@types/react": "~16.9.35",
+    "@types/react-native": "~0.63.2",
+    "typescript": "~4.0.0"
   },
   "private": true
 }

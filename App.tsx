@@ -12,9 +12,12 @@ import Apps from "./components/apps/Apps";
 import AppInfo from "./components/apps/AppInfo";
 import Account from "./components/Account";
 import Billing from "./components/Billing";
+import Settings from "./components/Settings";
 
 import { Storage } from "./components/util/Utilities";
 import AppLoading from "expo-app-loading";
+
+import * as LocalAuthentication from "expo-local-authentication";
 
 import NewDroplet from "./components/droplets/NewDroplet";
 
@@ -80,6 +83,10 @@ function BillingIdx({ navigation }) {
 
 function FeedbackIdx({ navigation }) {
   return <Feedback nav={navigation} />;
+}
+
+function SettingsIdx({ navigation }) {
+  return <Settings nav={navigation} />;
 }
 
 export default function App() {
@@ -219,6 +226,11 @@ export default function App() {
               <Stack.Screen
                 name="Billing"
                 component={BillingIdx}
+                options={{ headerShown: false }}
+              />
+              <Stack.Screen
+                name="Settings"
+                component={SettingsIdx}
                 options={{ headerShown: false }}
               />
               <Stack.Screen

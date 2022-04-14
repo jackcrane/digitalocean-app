@@ -12,6 +12,8 @@ import Body from "./util/Body";
 import styles from "./styles/BillingStyle";
 import { colors } from "./styles/Uts";
 import { Line, Spacer, Storage, ThinLine } from "./util/Utilities";
+import { Billing as BillingHandler } from "./util/APIHandler";
+import type { BillingType } from "./util/APIHandler";
 
 const Billing = (props) => {
   const [loading, setLoading] = useState(true);
@@ -37,18 +39,20 @@ const Billing = (props) => {
   const [billingHistory, setBillingHistory] = useState([]);
   useEffect(() => {
     (async () => {
-      const do_key = await Storage.get("do_key");
-      const response = await fetch(
-        "https://api.digitalocean.com/v2/customers/my/billing_history",
-        {
-          headers: {
-            Authorization: `Bearer ${do_key}`,
-            "Content-Type": "application/json",
-          },
-        }
-      );
-      const json = await response.json();
-      setBillingHistory(json.billing_history);
+      // const do_key = await Storage.get("do_key");
+      // const response = await fetch(
+      //   "https://api.digitalocean.com/v2/customers/my/billing_history",
+      //   {
+      //     headers: {
+      //       Authorization: `Bearer ${do_key}`,
+      //       "Content-Type": "application/json",
+      //     },
+      //   }
+      // );
+      // const json = await response.json();
+      // setBillingHistory(json.billing_history);
+      const { billing_history } = await BillingHandler.History();
+      setBillingHistory(billing_history);
     })();
   }, []);
 
@@ -273,35 +277,41 @@ const Billing = (props) => {
             <Text style={styles.subtitle}>History</Text>
             {billingHistory.length > 0 && (
               <View style={styles.history}>
-                {billingHistory.map((e, i) => (
-                  <View key={i} style={styles.historyRow}>
-                    <ThinLine />
-                    <TouchableOpacity
-                      onPress={() =>
-                        e.type === "Invoice" &&
-                        handleInvoiceTapped(e.invoice_uuid)
-                      }
-                    >
-                      <>
-                        <Text style={{ ...styles.text, fontWeight: "bold" }}>
-                          {e.description}
-                        </Text>
-                        <Text style={styles.details}>
-                          {new Date(e.date).toLocaleDateString()} | $ {e.amount}
-                          {e.type === "Invoice" && (
-                            <>
-                              {" "}
-                              |{" "}
-                              <Text style={{ color: colors.doblue }}>
-                                Tap for details
-                              </Text>
-                            </>
-                          )}
-                        </Text>
-                      </>
-                    </TouchableOpacity>
-                  </View>
-                ))}
+                {billingHistory.map(
+                  (e, i) =>
+                    typeof e !== "undefined" && (
+                      <View key={i} style={styles.historyRow}>
+                        <ThinLine />
+                        <TouchableOpacity
+                          onPress={() =>
+                            e.type === "Invoice" &&
+                            handleInvoiceTapped(e.invoice_uuid)
+                          }
+                        >
+                          <>
+                            <Text
+                              style={{ ...styles.text, fontWeight: "bold" }}
+                            >
+                              {e.description || "No description"}
+                            </Text>
+                            <Text style={styles.details}>
+                              {new Date(e.date).toLocaleDateString()} | $
+                              {e.amount}
+                              {e.type === "Invoice" && (
+                                <>
+                                  {" "}
+                                  |{" "}
+                                  <Text style={{ color: colors.doblue }}>
+                                    Tap for details
+                                  </Text>
+                                </>
+                              )}
+                            </Text>
+                          </>
+                        </TouchableOpacity>
+                      </View>
+                    )
+                )}
               </View>
             )}
           </>
