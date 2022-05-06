@@ -16,8 +16,11 @@ const Login = (props) => {
     const authsession = await WebBrowser.openAuthSessionAsync(
       `https://cloud.digitalocean.com/v1/oauth/authorize?client_id=137df427aa623a809915c5b88bd82df3cdbdb35f33cdee89e3d4b08b50178a9b&redirect_uri=${encodeURIComponent(
         "https://docn-app-redirect.jackcrane.workers.dev/?uri=$" +
-          encodeURIComponent("digitalocean://auth")
-      )}&response_type=code&scope=write`
+          // encodeURIComponent("digitalocean://auth")
+          encodeURIComponent(Constants.linkingUri)
+      )}&response_type=code&scope=write`,
+      Constants.linkingUri,
+      {}
     );
     if (authsession.type === "success") {
       console.log("success");
@@ -28,7 +31,8 @@ const Login = (props) => {
         let response = await fetch(
           `https://cloud.digitalocean.com/v1/oauth/token?client_id=137df427aa623a809915c5b88bd82df3cdbdb35f33cdee89e3d4b08b50178a9b&client_secret=75654094aa613a5435accf8b54ec82cce6839065deacab0a3438f5737c59c394&grant_type=authorization_code&code=${authcode}&redirect_uri=${encodeURIComponent(
             "https://docn-app-redirect.jackcrane.workers.dev/?uri=$" +
-              encodeURIComponent("digitalocean://auth")
+              // encodeURIComponent("digitalocean://auth")
+              encodeURIComponent(Constants.linkingUri)
           )}`,
           {
             method: "POST",
@@ -50,7 +54,7 @@ const Login = (props) => {
           console.log(json);
         }
       } catch (error) {
-        console.error(error);
+        console.log(error);
       }
     }
   };

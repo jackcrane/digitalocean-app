@@ -110,13 +110,13 @@ const Billing = (props) => {
                 <Text style={styles.text}>
                   <>
                     <Text style={{ fontWeight: "bold" }}>Billing Period: </Text>
-                    {invoice.billing_period}
+                    {new Date(invoice.billing_period).toLocaleDateString()}
                   </>
                 </Text>
                 <Text style={styles.text}>
                   <>
                     <Text style={{ fontWeight: "bold" }}>Issue Date: </Text>
-                    {invoice.issue_date}
+                    {new Date(invoice.issue_date).toLocaleDateString()}
                   </>
                 </Text>
                 <Text style={styles.text}>
@@ -192,7 +192,7 @@ const Billing = (props) => {
         <Text style={styles.text}>
           Report generated on{" "}
           <Text style={{ fontStyle: "italic" }}>
-            {!loading && balance.generated_at.toUTCString()}
+            {!loading && new Date(balance.generated_at).toUTCString()}
           </Text>
         </Text>
         <Line />
