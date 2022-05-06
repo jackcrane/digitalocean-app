@@ -13,25 +13,17 @@ import styles from "./styles/BillingStyle";
 import { colors } from "./styles/Uts";
 import { Line, Spacer, Storage, ThinLine } from "./util/Utilities";
 import { Billing as BillingHandler } from "./util/APIHandler";
-import type { BillingType } from "./util/APIHandler";
+import { BillingType } from "./util/APIHandler";
 
 const Billing = (props) => {
   const [loading, setLoading] = useState(true);
-  const [balance, setBalance] = useState();
+  // @ts-ignore
+  const [balance, setBalance] = useState<BillingType.Balance>({});
   useEffect(() => {
     (async () => {
-      const do_key = await Storage.get("do_key");
-      const response = await fetch(
-        "https://api.digitalocean.com/v2/customers/my/balance",
-        {
-          headers: {
-            Authorization: `Bearer ${do_key}`,
-            "Content-Type": "application/json",
-          },
-        }
-      );
-      const json = await response.json();
-      setBalance(json);
+      const _balance: BillingType.Balance = await BillingHandler.Balance();
+      // @ts-ignore
+      setBalance(_balance);
       setLoading(false);
     })();
   }, []);
@@ -39,42 +31,19 @@ const Billing = (props) => {
   const [billingHistory, setBillingHistory] = useState([]);
   useEffect(() => {
     (async () => {
-      // const do_key = await Storage.get("do_key");
-      // const response = await fetch(
-      //   "https://api.digitalocean.com/v2/customers/my/billing_history",
-      //   {
-      //     headers: {
-      //       Authorization: `Bearer ${do_key}`,
-      //       "Content-Type": "application/json",
-      //     },
-      //   }
-      // );
-      // const json = await response.json();
-      // setBillingHistory(json.billing_history);
       const { billing_history } = await BillingHandler.History();
       setBillingHistory(billing_history);
     })();
   }, []);
 
-  const [invoice, setInvoice] = useState();
+  const [invoice, setInvoice] = useState<BillingType.Invoice>();
 
   const handleInvoiceTapped = (invoice) => {
     (async () => {
       setDetailsModalVisible(true);
-      const do_key = await Storage.get("do_key");
-      console.log(invoice);
-      const response = await fetch(
-        `https://api.digitalocean.com/v2/customers/my/invoices/${invoice}/summary`,
-        {
-          headers: {
-            Authorization: `Bearer ${do_key}`,
-            "Content-Type": "application/json",
-          },
-        }
-      );
-      const json = await response.json();
-      console.log(json);
-      setInvoice(json);
+      const invoiceItem = await BillingHandler.Invoice(invoice);
+      console.log(invoiceItem);
+      setInvoice(invoiceItem);
     })();
   };
 
@@ -139,12 +108,16 @@ const Billing = (props) => {
                   {invoice.invoice_uuid}
                 </Text>
                 <Text style={styles.text}>
-                  <Text style={{ fontWeight: "bold" }}>Billing Period: </Text>
-                  {invoice.billing_period}
+                  <>
+                    <Text style={{ fontWeight: "bold" }}>Billing Period: </Text>
+                    {invoice.billing_period}
+                  </>
                 </Text>
                 <Text style={styles.text}>
-                  <Text style={{ fontWeight: "bold" }}>Issue Date: </Text>
-                  {invoice.issue_date}
+                  <>
+                    <Text style={{ fontWeight: "bold" }}>Issue Date: </Text>
+                    {invoice.issue_date}
+                  </>
                 </Text>
                 <Text style={styles.text}>
                   <Text style={{ fontWeight: "bold" }}>Invoice Amount: </Text>$
@@ -219,7 +192,7 @@ const Billing = (props) => {
         <Text style={styles.text}>
           Report generated on{" "}
           <Text style={{ fontStyle: "italic" }}>
-            {!loading && new Date(balance.generated_at).toGMTString()}
+            {!loading && balance.generated_at.toUTCString()}
           </Text>
         </Text>
         <Line />

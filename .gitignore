@@ -12,3 +12,10 @@ expo-constants.json
 
 # macOS
 .DS_Store
+assets/DigitalOcean pitch deck-flat.pptx
+assets/vids/PitchDeck-Compressed.mp4
+.gitignore
+.gitignore
+assets/vids/ScreenRecording.mp4
+assets/vids/PitchDeck.mp4
+assets/vids/ScreenRecording-Compressed.mp4

@@ -54,6 +54,7 @@ const styles = StyleSheet.create({
     textAlign: "center",
     fontFamily: "Epilogue_600SemiBold",
   },
+  history: {},
 });
 
 export default styles;

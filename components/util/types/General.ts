@@ -10,4 +10,6 @@ interface Meta {
   total: number;
 }
 
-export { Error, Billing, Meta };
+type RequestType = "GET" | "POST" | "PUT" | "DELETE";
+
+export { Error, Billing, Meta, RequestType };
