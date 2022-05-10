@@ -3,14 +3,16 @@ components/Login.js
 
 The login page presents the user a login page and manages all of the OAUTH logic, starting with a built-in library (WebBrowser.openAuthSessionAsync) that opens a web browser to DigitalOcean's OAuth service. It redirects to a redirect service hosted on Cloudflare's serverless platform, which redirects to the app with the user's auth token.
 
-  _   _  ____ _______ ______ 
- | \ | |/ __ \__   __|  ____|
- |  \| | |  | | | |  | |__   
- | . ` | |  | | | |  |  __|
- | |\  | |__| | | |  | |____ 
- |_| \_|\____/  |_|  |______|
+ _   _  ____ _______ ______ 
+| \ | |/ __ \__   __|  ____|
+|  \| | |  | | | |  | |__   
+| . ` | |  | | | |  |  __|
+| |\  | |__| | | |  | |____ 
+|_| \_|\____/  |_|  |______|
 
- IMPORTANT: There is a variable here called IN_DEVELOPMENT. It is a boolean that must be MANUALLY set to true in order to run the app in development mode, otherwise the app will redirect to the production version with the result of the login.
+IMPORTANT: There is a variable here called IN_DEVELOPMENT. It is a boolean that must be MANUALLY set to true in order to run the app in development mode, otherwise the app will redirect to the production version with the result of the login.
+
+The access token returned by the login flow is saved to the device's persistent storage and can be accessed by importing the `Storage` module from './util/Utilities', and calling `Storage.get("do_key")`.
                              
 */
 
