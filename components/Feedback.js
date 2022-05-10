@@ -1,3 +1,7 @@
+/*
+A dead-simple component to show the roadmap and an email address to send feedback to.
+*/
+
 import React, { useState, useEffect } from "react";
 import { View, Text, TextInput, Linking, TouchableOpacity } from "react-native";
 import Body from "./util/Body";
