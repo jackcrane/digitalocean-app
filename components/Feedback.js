@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { View, Text, TextInput, Linking } from "react-native";
+import { View, Text, TextInput, Linking, TouchableOpacity } from "react-native";
 import Body from "./util/Body";
 import styles from "./styles/FeedbackStyle";
 import { Spacer, Line, ThinLine } from "./util/Utilities";
-import { TouchableOpacity } from "react-native-gesture-handler";
 
 const Feedback = (props) => {
   return (

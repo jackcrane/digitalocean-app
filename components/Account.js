@@ -1,6 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { View, Text, StyleSheet, Platform } from "react-native";
-import { TouchableOpacity } from "react-native-gesture-handler";
+import {
+  View,
+  Text,
+  StyleSheet,
+  Platform,
+  TouchableOpacity,
+} from "react-native";
 import { StatusBar } from "expo-status-bar";
 
 import { Spacer, Storage } from "./util/Utilities";

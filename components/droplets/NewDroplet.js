@@ -9,7 +9,6 @@ import {
   Alert,
 } from "react-native";
 import styles, { colors } from "../styles/NewDropletStyle";
-import Checkbox from "expo-checkbox";
 
 import Collapsible from "../util/Collapsible";
 
