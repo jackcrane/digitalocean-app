@@ -21,3 +21,11 @@ You can use XCode's built in ios simulator on your mac, or you can install Expo 
 `$ npm start`
 
 I have not done any work to make the app remotely viable on Android (need to do that...), so for now, MacOS is required. More information is availible at https://docs.expo.dev/
+
+## Deployment
+
+Expo is set to watch the `master` branch, so PR your changes into `master` and they can be deployed to the production app.
+
+## To Do list
+
+Check out the project Kanban in GitHub Projects. The biggest project im currently working on is offloading all of the webcode from the component files to a seperate typed file.
