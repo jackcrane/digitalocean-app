@@ -26,11 +26,15 @@
     "updates": {
       "fallbackToCacheTimeout": 0
     },
-    "assetBundlePatterns": ["**/*"],
+    "assetBundlePatterns": [
+      "**/*"
+    ],
     "ios": {
       "supportsTablet": false,
       "infoPlist": {
-        "LSApplicationQueriesSchemes": ["ssh"],
+        "LSApplicationQueriesSchemes": [
+          "ssh"
+        ],
         "NSFaceIDUsageDescription": "Use Face ID to ensure further security."
       },
       "bundleIdentifier": "com.jackcrane.digitalocean-app"
@@ -39,12 +43,15 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
-      }
+      },
+      "package": "com.jackcrane.digitaloceanapp"
     },
     "web": {
       "favicon": "./assets/favicon.png"
     },
     "description": "",
-    "plugins": ["sentry-expo"]
+    "plugins": [
+      "sentry-expo"
+    ]
   }
 }
