@@ -1,3 +1,11 @@
+/*
+
+This is the homepage of the logged in app. It handles routing to each of the other sections. In an effort to reduce the amount of boilerplate in this page, there is a variable called `navs` that is used to list the navigation links, route, icon, and any custom styling to apply to the icon.
+
+NOTE this page needs webcode offloaded to a seperate file.
+
+*/
+
 import { StatusBar } from "expo-status-bar";
 import React, { useEffect, useState } from "react";
 import {
@@ -6,15 +14,17 @@ import {
   Image,
   TouchableOpacity,
   RefreshControl,
-  ActivityIndicator,
   ScrollView,
 } from "react-native";
 import styles from "./styles/DestStyles";
-import AsyncStorage from "@react-native-async-storage/async-storage";
 
-import { Spacer, Link, Storage } from "./util/Utilities";
-import Body from "./util/Body";
+import { Spacer, Storage } from "./util/Utilities";
 
+/**
+ * The page that handles routing to the main pages like droplets and appps.
+ * @param {Object} props.nav - The navigation object to be passed to the component.
+ * @returns
+ */
 export default function Destinations(props) {
   const [refreshing, setRefreshing] = useState(false);
   const [refreshTick, setRefreshTick] = useState(0);
