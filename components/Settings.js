@@ -14,7 +14,7 @@ import Collapsible from "./util/Collapsible";
 import Constants from "expo-constants";
 import * as LocalAuthentication from "expo-local-authentication";
 
-/*
+/**
  * This component is used to display a settings and diagnostics information page. It is not currently visible in the app, but is slated to replace the `components/Account.js` page. Like all other components, this takes the `nav` prop as a prop.
  * @param {Object} props - The props to be passed to the component.
  * @param {Object} props.nav - The navigation object to be passed to the component.
