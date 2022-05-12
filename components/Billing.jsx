@@ -16,12 +16,10 @@ import { Billing as BillingHandler } from "./util/APIHandler";
 
 const Billing = (props) => {
   const [loading, setLoading] = useState(true);
-  // @ts-ignore
   const [balance, setBalance] = useState();
   useEffect(() => {
     (async () => {
       const _balance = await BillingHandler.Balance();
-      // @ts-ignore
       setBalance(_balance);
       setLoading(false);
     })();
