@@ -2,8 +2,6 @@
 
 This is the homepage of the logged in app. It handles routing to each of the other sections. In an effort to reduce the amount of boilerplate in this page, there is a variable called `navs` that is used to list the navigation links, route, icon, and any custom styling to apply to the icon.
 
-NOTE this page needs webcode offloaded to a seperate file.
-
 */
 
 import { StatusBar } from "expo-status-bar";
@@ -17,6 +15,7 @@ import {
   ScrollView,
 } from "react-native";
 import styles from "./styles/DestStyles";
+import { Billing as BillingHandler } from "./util/APIHandler";
 
 import { Spacer, Storage } from "./util/Utilities";
 
@@ -38,31 +37,14 @@ export default function Destinations(props) {
   };
 
   const [usage, setUsage] = useState(0);
-  const [token, setToken] = useState("");
-
-  useEffect(() => {
-    Storage.get("do_key").then((value) => {
-      setToken(value);
-    });
-  }, []);
 
   useEffect(() => {
     (async () => {
       setUsage(false);
-      const value = await fetch(
-        "https://api.digitalocean.com/v2/customers/my/balance",
-        {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: "Bearer " + token,
-          },
-        }
-      );
-      const json = await value.json();
-      setUsage(json.month_to_date_usage);
+      let d = (await BillingHandler.Balance()).month_to_date_usage;
+      setUsage(d);
     })();
-  }, [token, refreshTick]);
+  }, [refreshTick]);
 
   const navs = [
     {
