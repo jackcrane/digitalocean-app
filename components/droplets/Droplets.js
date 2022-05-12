@@ -12,13 +12,17 @@ import {
 } from "react-native";
 import styles from "../styles/AppsStyle";
 
+import { Droplets as DropletsHandler } from "../util/APIHandler";
+
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 import { Spacer, Link, Storage } from "../util/Utilities";
 import Body from "../util/Body";
 
 export default function Droplets(props) {
-  // 855c0da05ec2eb5b6b5a562be8cef164c96ef15cba68e497cbcd6691335c82fe
+  useEffect(() => {
+    DropletsHandler.List();
+  }, []);
 
   const [droplets, setDroplets] = useState([]);
   const [dropletsLoading, setDropletsLoading] = useState(true);
@@ -36,19 +40,11 @@ export default function Droplets(props) {
   };
 
   useEffect(() => {
-    Storage.get("do_key").then((e) => {
-      fetch("https://api.digitalocean.com/v2/droplets", {
-        headers: {
-          Authorization: `Bearer ${e}`,
-          "Content-Type": "application/json",
-        },
-      })
-        .then((response) => response.json())
-        .then((data) => {
-          setDroplets(data.droplets);
-          setDropletsLoading(false);
-        });
-    });
+    (async () => {
+      let droplets = await DropletsHandler.List();
+      setDroplets(droplets);
+      setDropletsLoading(false);
+    })();
   }, [refreshTick]);
 
   return (

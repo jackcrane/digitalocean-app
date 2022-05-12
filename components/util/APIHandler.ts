@@ -1,7 +1,14 @@
+/*
+
+This is the master webcode file. If necessary, it can be broken into multiple files and should be sorted by overall objects (Billing, Droplets, etc). This is something that we should do but I cant be bothered to do right now.
+
+*/
+
 import type {
   RequestType,
   Error as Error,
   Billing as BillingType,
+  Droplets as DropletsType,
 } from "./types/General";
 import { Storage } from "./Utilities";
 
@@ -189,5 +196,27 @@ const Billing = {
   },
 };
 
-export type { BillingType, Error };
-export { Billing };
+const Droplets = {
+  /**
+   * Returns a list of droplets.
+   * @returns {Promise<DropletType.Droplets>}
+   * @see https://api-engineering.nyc3.digitaloceanspaces.com/spec-ci/redoc-index.html#operation/list_all_droplets
+   */
+  List: async (): Promise<DropletsType.Droplet[]> => {
+    let r = (await HandleRequestIterable(
+      "https://api.digitalocean.com/v2/droplets",
+      "GET",
+      "droplets"
+    )) as DropletsType.DropletList;
+    r.droplets = r.droplets.map((i) => {
+      return {
+        ...i,
+        created_at: new Date(i.created_at),
+      };
+    });
+    return r.droplets;
+  },
+};
+
+export type { BillingType, DropletsType, Error };
+export { Billing, Droplets };

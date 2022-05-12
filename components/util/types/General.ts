@@ -1,4 +1,5 @@
 import * as Billing from "./Billing";
+import * as Droplets from "./Droplets";
 
 interface Error {
   message: string;
@@ -12,4 +13,4 @@ interface Meta {
 
 type RequestType = "GET" | "POST" | "PUT" | "DELETE";
 
-export { Error, Billing, Meta, RequestType };
+export { Error, Billing, Droplets, Meta, RequestType };
