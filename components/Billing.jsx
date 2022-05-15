@@ -13,15 +13,14 @@ import styles from "./styles/BillingStyle";
 import { colors } from "./styles/Uts";
 import { Line, Spacer, Storage, ThinLine } from "./util/Utilities";
 import { Billing as BillingHandler } from "./util/APIHandler";
-import { BillingType } from "./util/APIHandler";
 
 const Billing = (props) => {
   const [loading, setLoading] = useState(true);
   // @ts-ignore
-  const [balance, setBalance] = useState<BillingType.Balance>({});
+  const [balance, setBalance] = useState();
   useEffect(() => {
     (async () => {
-      const _balance: BillingType.Balance = await BillingHandler.Balance();
+      const _balance = await BillingHandler.Balance();
       // @ts-ignore
       setBalance(_balance);
       setLoading(false);
@@ -36,7 +35,7 @@ const Billing = (props) => {
     })();
   }, []);
 
-  const [invoice, setInvoice] = useState<BillingType.Invoice>();
+  const [invoice, setInvoice] = useState();
 
   const handleInvoiceTapped = (invoice) => {
     (async () => {

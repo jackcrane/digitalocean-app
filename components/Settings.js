@@ -1,13 +1,11 @@
+/*
+components/Settings.js
+
+This component is used to display a settings and diagnostics information page. It is not currently visible in the app, but is slated to replace the `components/Account.js` page. Like all other components, this takes the `nav` prop as a prop. Most of the user-facing UI is finished, but little work has been done on the UX and no debugging. I would like for this page to be like a settings page for the user's account and for their interactions with the app, like faceID, logouts, possible notifications, etc.
+*/
+
 import React, { useState, useEffect } from "react";
-import {
-  Text,
-  View,
-  TouchableOpacity,
-  Switch,
-  ActivityIndicator,
-  ScrollView,
-  Modal,
-} from "react-native";
+import { Text, View, Switch } from "react-native";
 import Body from "./util/Body";
 import styles from "./styles/SettingsStyle";
 import { colors } from "./styles/Uts";
@@ -16,7 +14,12 @@ import Collapsible from "./util/Collapsible";
 import Constants from "expo-constants";
 import * as LocalAuthentication from "expo-local-authentication";
 
-const Billing = (props) => {
+/**
+ * This component is used to display a settings and diagnostics information page. It is not currently visible in the app, but is slated to replace the `components/Account.js` page. Like all other components, this takes the `nav` prop as a prop.
+ * @param {Object} props - The props to be passed to the component.
+ * @param {Object} props.nav - The navigation object to be passed to the component.
+ */
+const Settings = (props) => {
   const [faceId, setFaceId] = useState(false);
   enableLocalAuthentication = async (auth) => {
     setFaceId(!faceId);
@@ -110,4 +113,4 @@ const Billing = (props) => {
   );
 };
 
-export default Billing;
+export default Settings;
